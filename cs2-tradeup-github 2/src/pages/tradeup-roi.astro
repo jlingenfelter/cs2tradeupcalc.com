@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, faqSchema, breadcrumbSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is trade up ROI?','ROI (Return on Investment) measures your percentage profit or loss. ROI = ((EV - Input Cost) / Input Cost) × 100%. Positive ROI means profit; negative means loss.'],
+  ['What is a good ROI for trade ups?','Anything above 0% is profitable. Many experienced traders target 20-50% ROI per trade up to account for market fluctuations and Steam fees.'],
+  ['Does Steam Market fee affect ROI?','Yes. The 15% Steam Market fee reduces your actual return. Subtract 15% from output values for accurate ROI calculations.'],
+];
+---
+<Base title="CS2 Trade Up ROI — Return on Investment Guide" description="Calculate and optimize ROI for CS2 trade ups. Understand how to measure profitability and maximize returns on trade up investments." canonical="/tradeup-roi/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Trade Up ROI</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Trade Up ROI']])}</script>`} />
+
+<h1>CS2 Trade Up ROI Guide</h1>
+<p>ROI measures the percentage return on your trade up investment. While EV tells you the dollar amount you can expect, ROI normalizes it as a percentage, making it easy to compare trade ups of different sizes. A 50% ROI on a $10 trade up is proportionally the same as 50% ROI on a $100 trade up.</p>
+
+<h2>How to Calculate Trade Up ROI</h2>
+<p>The formula is simple: <strong>ROI = ((Expected Value - Total Input Cost) / Total Input Cost) × 100%</strong>. If your EV is $8.40 and your inputs cost $6.00, your ROI is ((8.40 - 6.00) / 6.00) × 100% = 40%. This means for every dollar you invest in this trade up, you expect to earn 40 cents in profit on average.</p>
+
+<h2>ROI Benchmarks</h2>
+<table>
+<thead><tr><th>ROI Range</th><th>Assessment</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td style="color:var(--red)">&lt; 0%</td><td>Unprofitable</td><td>Avoid — you lose money on average</td></tr>
+<tr><td style="color:var(--text2)">0% – 10%</td><td>Marginal</td><td>Barely profitable after fees</td></tr>
+<tr><td style="color:var(--accent2)">10% – 30%</td><td>Decent</td><td>Solid after accounting for fees</td></tr>
+<tr><td style="color:var(--accent2)">30% – 60%</td><td>Good</td><td>Strong opportunity worth pursuing</td></tr>
+<tr><td style="color:var(--accent2)">&gt; 60%</td><td>Excellent</td><td>Rare — verify prices are current</td></tr>
+</tbody></table>
+
+<h2>Accounting for Steam Market Fees</h2>
+<p>When selling on the Steam Market, Valve takes approximately 15% of the sale price (13% Steam fee + 2% CS2 fee). This means if a skin lists for $10.00, you receive $8.70 after fees. For accurate ROI calculations, multiply all output values by 0.87 before computing EV.</p>
+<p>Alternatively, third-party trading sites and direct trades avoid Steam Market fees entirely. If you plan to sell through these channels, you can use full market prices in your ROI calculations, though actual trade values may differ from Steam Market listings.</p>
+
+<h2>ROI vs. Absolute Profit</h2>
+<p>A high ROI on a small trade up might produce less total profit than a lower ROI on a larger one. A 100% ROI on $5 of inputs yields $5 profit, while a 20% ROI on $50 of inputs yields $10 profit. Consider both ROI and absolute profit when choosing which trade ups to pursue, especially when your capital is limited.</p>
+
+<h2>Maximizing Trade Up ROI</h2>
+<p>The highest ROI trade ups typically involve low-tier inputs (Consumer or Industrial grade) from collections with high-value outcomes at the next tier. Look for collections where input skins can be purchased at or near their minimum market price while outcomes include at least one skin worth many multiples of the total input cost.</p>
+<p>Buying inputs during market dips and selling outputs during peaks can further improve ROI, though market timing adds complexity and risk.</p>
+
+<h2>Calculate Your ROI</h2>
+<p>Use our <a href="/tradeup-calculator/">trade up calculator</a> to compute ROI for any trade up. The calculator shows both raw EV and ROI percentage after you enter input costs and output prices.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/tradeup-expected-value/">Expected Value</a>
+<a href="/tradeup-breakeven/">Breakeven</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+</div>
+</Base>

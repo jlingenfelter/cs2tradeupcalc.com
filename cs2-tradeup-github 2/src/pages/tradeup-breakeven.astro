@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, faqSchema, breadcrumbSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is trade up breakeven?','Breakeven is the minimum output value needed for a trade up to not lose money on average. It equals your total input cost.'],
+  ['How do I find my breakeven point?','Add up the cost of all 10 input skins. Your expected value must equal or exceed this total for the trade up to break even.'],
+  ['Should I factor in Steam fees for breakeven?','Yes. If selling on Steam Market, divide your input cost by 0.87 to get the breakeven listing price (accounting for 15% fees).'],
+];
+---
+<Base title="CS2 Trade Up Breakeven Calculator — Find Your Break-Even Point" description="Calculate the breakeven point for CS2 trade ups. Find the minimum output value needed to avoid losing money on average." canonical="/tradeup-breakeven/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Breakeven</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Breakeven']])}</script>`} />
+
+<h1>CS2 Trade Up Breakeven Calculator</h1>
+<p>The breakeven point is the minimum expected value a trade up must have to avoid losing money on average. Understanding breakeven helps you quickly filter out unprofitable trade ups and focus on opportunities worth pursuing.</p>
+
+<h2>Calculating Breakeven</h2>
+<p>The breakeven formula is simple: <strong>Breakeven EV = Total Input Cost</strong>. If your 10 input skins cost a combined $7.50, you need an expected return of at least $7.50 to break even. Any EV above $7.50 is profit; any EV below is a loss.</p>
+<p>When accounting for Steam Market fees (15%), the breakeven becomes: <strong>Breakeven Listing Price = Total Input Cost / 0.87</strong>. For $7.50 in inputs, you need outputs with a total expected listing value of at least $8.62 to break even after fees.</p>
+
+<h2>Quick Breakeven Reference</h2>
+<table>
+<thead><tr><th>Total Input Cost</th><th>Breakeven EV</th><th>Breakeven with Fees</th></tr></thead>
+<tbody>
+<tr><td>$1.00</td><td>$1.00</td><td>$1.15</td></tr>
+<tr><td>$2.50</td><td>$2.50</td><td>$2.87</td></tr>
+<tr><td>$5.00</td><td>$5.00</td><td>$5.75</td></tr>
+<tr><td>$10.00</td><td>$10.00</td><td>$11.49</td></tr>
+<tr><td>$25.00</td><td>$25.00</td><td>$28.74</td></tr>
+<tr><td>$50.00</td><td>$50.00</td><td>$57.47</td></tr>
+<tr><td>$100.00</td><td>$100.00</td><td>$114.94</td></tr>
+</tbody></table>
+
+<h2>Using Breakeven for Quick Evaluation</h2>
+<p>Before doing a full EV calculation, you can quickly evaluate a trade up by asking: "Is there any realistic chance the output will be worth more than my total input cost?" If the answer is no — if every possible outcome is worth less than your total input — the trade up cannot be profitable regardless of probability distribution.</p>
+<p>Conversely, if the highest-value outcome is worth much more than your inputs, the trade up might be profitable even with relatively low probability of hitting that outcome. The breakeven check helps you quickly identify which trade ups are worth analyzing in detail.</p>
+
+<h2>Breakeven and Probability Thresholds</h2>
+<p>For a trade up with a single valuable outcome and one or more low-value outcomes, you can calculate the minimum probability needed for the valuable outcome to achieve breakeven. The formula is: <strong>Min Probability = (Input Cost - Low Value × Low Prob) / (High Value - Low Value)</strong>. This tells you how many inputs must come from the high-value collection to break even.</p>
+
+<h2>Try the Calculator</h2>
+<p>Use our <a href="/tradeup-calculator/">trade up calculator</a> to see your exact breakeven point. The calculator displays breakeven EV alongside your actual EV so you can instantly see whether a trade up is profitable.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/tradeup-expected-value/">Expected Value</a>
+<a href="/tradeup-roi/">ROI Guide</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+</div>
+</Base>

@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, RARITY_LABELS, RARITY_ORDER, faqSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is a CS2 trade up?','A trade up contract lets you exchange 10 skins of the same rarity for 1 skin of the next rarity tier. The outcome depends on which collections the input skins belong to.'],
+  ['How does trade up probability work?','Each input skin contributes a 10% weight toward its collection. Outcomes are drawn from the next rarity tier of each collection represented, weighted by how many inputs belong to that collection.'],
+  ['Is trading up profitable?','Trade ups can be profitable if you carefully select inputs with low cost and high-value potential outcomes. Most random trade ups lose money on average, but targeted trade ups with good collection selection can yield positive expected value.'],
+];
+---
+<Base title="CS2 Trade Up Calculator — Probability, EV & ROI Calculator" description="Free CS2 trade up calculator. Calculate outcome probabilities, expected value, and ROI for any trade up contract. 12+ collections with accurate data." canonical="/" currentNav="/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="hero">
+<h1>CS2 Trade Up Calculator</h1>
+<p>Calculate exact outcome probabilities, expected value, and ROI for any CS2 trade up contract. Select your 10 input skins and instantly see every possible outcome.</p>
+</div>
+
+<div class="stat-row">
+<div class="stat-card"><div class="num" style="color:var(--accent)">{COLLECTIONS.length}</div><div class="desc">Collections</div></div>
+<div class="stat-card"><div class="num" style="color:var(--accent2)">10</div><div class="desc">Inputs Per Trade Up</div></div>
+<div class="stat-card"><div class="num" style="color:var(--restricted)">5</div><div class="desc">Rarity Tiers</div></div>
+<div class="stat-card"><div class="num" style="color:var(--covert)">1</div><div class="desc">Output Per Contract</div></div>
+</div>
+
+<div style="text-align:center;margin:32px 0"><a href="/tradeup-calculator/" class="btn">Open Calculator →</a></div>
+
+<h2>How CS2 Trade Ups Work</h2>
+<p>A trade up contract in CS2 allows you to sacrifice 10 skins of the same rarity tier and receive 1 skin of the next higher rarity tier. The key mechanic is that the outcome is determined by the collections your input skins belong to. If all 10 inputs come from one collection, your outcome will be one of that collection's next-tier skins, chosen at random with equal probability.</p>
+<p>When inputs span multiple collections, the probability is split proportionally. For example, if 7 inputs are from Collection A and 3 from Collection B, Collection A's outcomes collectively receive 70% probability and Collection B's outcomes receive 30%, each split evenly among that collection's available outcomes at the target tier.</p>
+<p>This makes trade ups a strategic tool. By carefully choosing which collections and skins you input, you can weight the probability toward desirable (and valuable) outcomes while minimizing exposure to low-value results.</p>
+
+<h2>Understanding Trade Up Expected Value</h2>
+<p>Expected value (EV) is the average return you would receive if you performed the same trade up thousands of times. It is calculated by multiplying each possible outcome's probability by its market value and summing the results. A profitable trade up has an EV higher than the total cost of the 10 input skins.</p>
+<p>Most random trade ups have negative EV because Mil-Spec and Restricted tier skins typically increase only modestly in value at the next tier. However, certain collections contain high-value skins at specific rarities, creating opportunities for positive-EV trade ups when input costs are low enough.</p>
+<p>Visit our <a href="/tradeup-expected-value/">expected value guide</a> for a detailed breakdown of how to calculate and optimize trade up EV.</p>
+
+<h2>Popular Collections for Trade Ups</h2>
+<div class="link-grid">
+{COLLECTIONS.slice(0, 8).map(c => <a href={`/collection/${c.id}/`}>{c.name}</a>)}
+</div>
+<p style="margin-top:12px"><a href="/best-tradeup-collections/">View all collections →</a></p>
+
+<h2>Trade Up Guides</h2>
+<div class="link-grid">
+<a href="/tradeup-calculator/">Trade Up Calculator</a>
+<a href="/how-tradeups-work/">How Trade Ups Work</a>
+<a href="/tradeup-probability/">Probability Guide</a>
+<a href="/float-wear-guide/">Float & Wear Guide</a>
+<a href="/tradeup-expected-value/">Expected Value Guide</a>
+<a href="/tradeup-roi/">ROI Guide</a>
+<a href="/tradeup-breakeven/">Breakeven Calculator</a>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+</Base>

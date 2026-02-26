@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, RARITY_ORDER, RARITY_LABELS, faqSchema, breadcrumbSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is a trade up contract in CS2?','A trade up contract lets you exchange exactly 10 skins of the same rarity for 1 skin of the next higher rarity. The output is randomly selected from the collections represented by your inputs.'],
+  ['Can I trade up StatTrak skins?','Yes, but all 10 inputs must be StatTrak and the output will also be StatTrak. You cannot mix StatTrak and non-StatTrak skins in the same trade up.'],
+  ['Can I trade up Covert skins?','No. Covert is the highest rarity tier for trade ups. You cannot trade up Covert skins because there is no higher tier to receive.'],
+  ['Do trade ups work with souvenir skins?','No. Souvenir skins cannot be used in trade up contracts.'],
+];
+---
+<Base title="How CS2 Trade Ups Work — Complete Beginner Guide" description="Learn how CS2 trade up contracts work. Understand rarity tiers, collection mechanics, probability, and float value calculations." canonical="/how-tradeups-work/" currentNav="/how-tradeups-work/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>How Trade Ups Work</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['How Trade Ups Work']])}</script>`} />
+
+<h1>How CS2 Trade Ups Work — Complete Guide</h1>
+<p>Trade up contracts are one of the most strategic mechanics in CS2's skin economy. By exchanging 10 lower-rarity skins for 1 higher-rarity skin, players can potentially turn inexpensive inputs into valuable outputs. This guide explains every aspect of how trade ups function.</p>
+
+<h2>The Basics</h2>
+<p>A trade up contract requires exactly 10 skins as input. All 10 skins must be the same rarity tier — you cannot mix Mil-Spec and Restricted skins in one trade up. When you complete the contract, you receive exactly 1 skin from the next higher rarity tier. The specific skin you receive depends on which collections your input skins belong to.</p>
+<p>The rarity tiers in order from lowest to highest are: Consumer Grade, Industrial Grade, Mil-Spec, Restricted, Classified, and Covert. You can trade up from any tier except Covert, since there is no tier above it. Consumer Grade skins trade up to Industrial Grade, Industrial Grade to Mil-Spec, and so on.</p>
+
+<h2>Rarity Tier Progression</h2>
+<table>
+<thead><tr><th>Input Tier</th><th></th><th>Output Tier</th></tr></thead>
+<tbody>
+{RARITY_ORDER.slice(0,-1).map((r,i) => (
+<tr><td><span class={`badge badge-${r}`}>{RARITY_LABELS[r]}</span></td><td class="arrow">→</td><td><span class={`badge badge-${RARITY_ORDER[i+1]}`}>{RARITY_LABELS[RARITY_ORDER[i+1]]}</span></td></tr>
+))}
+</tbody>
+</table>
+
+<h2>Collection Mechanics</h2>
+<p>The most important concept in trade ups is the collection system. Every skin in CS2 belongs to a specific collection (like The Dust 2 Collection or The Mirage Collection). When you submit 10 skins in a trade up, the game looks at which collections are represented and what skins those collections have at the next rarity tier.</p>
+<p>If all 10 inputs come from the same collection, you are guaranteed to receive a skin from that collection at the next tier. If your inputs span multiple collections, the probability of each collection's outcomes is proportional to how many inputs come from that collection.</p>
+
+<h2>Probability Calculation</h2>
+<p>The probability model works as follows: each of the 10 input skins contributes a 10% weight to its collection. If 7 inputs come from Collection A and 3 from Collection B, then Collection A's outcomes collectively receive 70% probability and Collection B's receive 30%. Within each collection, the probability is split evenly among all available outcomes at the target rarity tier.</p>
+<p>For example, if Collection A has 2 Restricted skins and Collection B has 1 Restricted skin, and you trade up 7 Mil-Spec skins from A and 3 from B: each of A's 2 outcomes gets 35% probability (70% / 2), and B's 1 outcome gets 30% probability (30% / 1). The total always sums to 100%.</p>
+
+<h2>Float Value in Trade Ups</h2>
+<p>The float value of your output skin is determined by the average float of your 10 input skins, mapped to the output skin's float range. The formula is: Output Float = (Average Input Float) × (Max Float - Min Float) + Min Float. This means that using low-float inputs generally produces low-float outputs, which can significantly increase the value of the result.</p>
+<p>Some skins have restricted float ranges. For example, certain skins can only drop in Factory New condition. Understanding float ranges is essential for maximizing trade up value. See our <a href="/float-wear-guide/">float and wear guide</a> for detailed information.</p>
+
+<h2>StatTrak Trade Ups</h2>
+<p>StatTrak skins can be used in trade ups, but with an important restriction: all 10 inputs must be StatTrak, and the output will also be StatTrak. You cannot mix StatTrak and non-StatTrak skins. StatTrak trade ups can be highly profitable because StatTrak versions of rare skins often command significant premiums over their non-StatTrak equivalents.</p>
+
+<h2>What You Cannot Trade Up</h2>
+<p>Covert skins cannot be traded up because they are the highest tier. Souvenir skins cannot be used in trade up contracts. Skins from different rarity tiers cannot be mixed in the same trade up. Stickers on input skins are destroyed and do not affect the output in any way.</p>
+
+<h2>Try the Calculator</h2>
+<p>Use our <a href="/tradeup-calculator/">trade up calculator</a> to plan your trade ups. Enter your 10 inputs and see all possible outcomes with probabilities, expected value, and ROI.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/float-wear-guide/">Float Guide</a>
+<a href="/tradeup-probability/">Probability Guide</a><a href="/tradeup-expected-value/">Expected Value</a>
+{COLLECTIONS.slice(0,5).map(c => <a href={`/collection/${c.id}/`}>{c.name}</a>)}
+</div>
+</Base>

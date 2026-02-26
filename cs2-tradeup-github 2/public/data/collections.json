@@ -1,0 +1,193 @@
+[
+  {
+    "id": "dust-2-collection",
+    "name": "The Dust 2 Collection",
+    "items": [
+      { "name": "P250 | Sand Dune", "rarity": "consumer" },
+      { "name": "Tec-9 | Groundwater", "rarity": "consumer" },
+      { "name": "MAG-7 | Sand Dune", "rarity": "consumer" },
+      { "name": "PP-Bizon | Sand Dashed", "rarity": "consumer" },
+      { "name": "Nova | Predator", "rarity": "industrial" },
+      { "name": "Sawed-Off | Snake Camo", "rarity": "industrial" },
+      { "name": "MAC-10 | Palm", "rarity": "industrial" },
+      { "name": "SG 553 | Tornado", "rarity": "milspec" },
+      { "name": "M4A4 | Desert Storm", "rarity": "milspec" },
+      { "name": "AK-47 | Safari Mesh", "rarity": "restricted" },
+      { "name": "AWP | Safari Mesh", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "mirage-collection",
+    "name": "The Mirage Collection",
+    "items": [
+      { "name": "UMP-45 | Gunsmoke", "rarity": "consumer" },
+      { "name": "Sawed-Off | Sage Spray", "rarity": "consumer" },
+      { "name": "Negev | Army Sheen", "rarity": "consumer" },
+      { "name": "SG 553 | Army Sheen", "rarity": "consumer" },
+      { "name": "MAG-7 | Storm", "rarity": "industrial" },
+      { "name": "MP9 | Storm", "rarity": "industrial" },
+      { "name": "Five-SeveN | Urban Hazard", "rarity": "milspec" },
+      { "name": "M4A1-S | Boreal Forest", "rarity": "milspec" },
+      { "name": "P250 | Whiteout", "rarity": "restricted" },
+      { "name": "AWP | Pit Viper", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "inferno-collection",
+    "name": "The Inferno Collection",
+    "items": [
+      { "name": "Tec-9 | Tornado", "rarity": "consumer" },
+      { "name": "PP-Bizon | Irradiated Alert", "rarity": "consumer" },
+      { "name": "XM1014 | Fallout Warning", "rarity": "consumer" },
+      { "name": "MAG-7 | Irradiated Alert", "rarity": "consumer" },
+      { "name": "P90 | Scorched", "rarity": "industrial" },
+      { "name": "MP9 | Sand Dashed", "rarity": "industrial" },
+      { "name": "Sawed-Off | Irradiated Alert", "rarity": "milspec" },
+      { "name": "Desert Eagle | Mudder", "rarity": "milspec" },
+      { "name": "M4A4 | Radiation Hazard", "rarity": "restricted" },
+      { "name": "AK-47 | Predator", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "nuke-collection",
+    "name": "The Nuke Collection",
+    "items": [
+      { "name": "P250 | Contamination", "rarity": "consumer" },
+      { "name": "MP7 | Army Recon", "rarity": "consumer" },
+      { "name": "UMP-45 | Fallout Warning", "rarity": "consumer" },
+      { "name": "MAG-7 | Irradiated Alert", "rarity": "consumer" },
+      { "name": "Five-SeveN | Contractor", "rarity": "industrial" },
+      { "name": "Tec-9 | Nuclear Threat", "rarity": "industrial" },
+      { "name": "P90 | Fallout Warning", "rarity": "milspec" },
+      { "name": "M4A4 | Radiation Hazard", "rarity": "milspec" },
+      { "name": "AK-47 | Radiation Hazard", "rarity": "restricted" },
+      { "name": "AWP | Graphite", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "italy-collection",
+    "name": "The Italy Collection",
+    "items": [
+      { "name": "Glock-18 | Groundwater", "rarity": "consumer" },
+      { "name": "FAMAS | Colony", "rarity": "consumer" },
+      { "name": "Nova | Sand Dune", "rarity": "consumer" },
+      { "name": "Sawed-Off | Forest DDPAT", "rarity": "consumer" },
+      { "name": "AUG | Colony", "rarity": "industrial" },
+      { "name": "Galil AR | Sage Spray", "rarity": "industrial" },
+      { "name": "Dual Berettas | Stained", "rarity": "milspec" },
+      { "name": "M4A1-S | Boreal Forest", "rarity": "milspec" },
+      { "name": "USP-S | Forest Leaves", "rarity": "restricted" },
+      { "name": "AK-47 | Jungle Spray", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "train-collection",
+    "name": "The Train Collection",
+    "items": [
+      { "name": "PP-Bizon | Facility Draft", "rarity": "consumer" },
+      { "name": "XM1014 | Blue Steel", "rarity": "consumer" },
+      { "name": "Glock-18 | Blue Fissure", "rarity": "consumer" },
+      { "name": "SG 553 | Fallout Warning", "rarity": "consumer" },
+      { "name": "M249 | Contrast Spray", "rarity": "industrial" },
+      { "name": "MAC-10 | Candy Apple", "rarity": "industrial" },
+      { "name": "P90 | Ash Wood", "rarity": "milspec" },
+      { "name": "MAG-7 | Bulldozer", "rarity": "milspec" },
+      { "name": "Desert Eagle | Blaze", "rarity": "restricted" },
+      { "name": "M4A1-S | Dark Water", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "vertigo-collection",
+    "name": "The Vertigo Collection",
+    "items": [
+      { "name": "P250 | Bone Mask", "rarity": "consumer" },
+      { "name": "MAC-10 | Indigo", "rarity": "consumer" },
+      { "name": "MP9 | Dry Season", "rarity": "consumer" },
+      { "name": "UMP-45 | Indigo", "rarity": "consumer" },
+      { "name": "FAMAS | Teardown", "rarity": "industrial" },
+      { "name": "Five-SeveN | Kami", "rarity": "industrial" },
+      { "name": "Dual Berettas | Hemoglobin", "rarity": "milspec" },
+      { "name": "AUG | Wings", "rarity": "milspec" },
+      { "name": "SSG 08 | Blood in the Water", "rarity": "restricted" },
+      { "name": "P2000 | Ocean Foam", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "aztec-collection",
+    "name": "The Aztec Collection",
+    "items": [
+      { "name": "Galil AR | Sage Spray", "rarity": "consumer" },
+      { "name": "FAMAS | Hexane", "rarity": "consumer" },
+      { "name": "SG 553 | Army Sheen", "rarity": "consumer" },
+      { "name": "Tec-9 | Army Mesh", "rarity": "consumer" },
+      { "name": "Nova | Tempest", "rarity": "industrial" },
+      { "name": "PP-Bizon | Water Sigil", "rarity": "industrial" },
+      { "name": "M4A4 | Jungle Tiger", "rarity": "milspec" },
+      { "name": "AK-47 | Jungle Spray", "rarity": "milspec" },
+      { "name": "AUG | Hot Rod", "rarity": "restricted" },
+      { "name": "SG 553 | Pulse", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "cobblestone-collection",
+    "name": "The Cobblestone Collection",
+    "items": [
+      { "name": "MP9 | Storm", "rarity": "consumer" },
+      { "name": "Sawed-Off | Sage Spray", "rarity": "consumer" },
+      { "name": "P250 | Bone Mask", "rarity": "consumer" },
+      { "name": "Nova | Green Apple", "rarity": "consumer" },
+      { "name": "MAC-10 | Indigo", "rarity": "industrial" },
+      { "name": "UMP-45 | Indigo", "rarity": "industrial" },
+      { "name": "CZ75-Auto | Green Plaid", "rarity": "milspec" },
+      { "name": "Desert Eagle | Hand Cannon", "rarity": "milspec" },
+      { "name": "M4A1-S | Knight", "rarity": "restricted" },
+      { "name": "AWP | Dragon Lore", "rarity": "covert" }
+    ]
+  },
+  {
+    "id": "overpass-collection",
+    "name": "The Overpass Collection",
+    "items": [
+      { "name": "UMP-45 | Scorched", "rarity": "consumer" },
+      { "name": "PP-Bizon | Jungle Slipstream", "rarity": "consumer" },
+      { "name": "XM1014 | Bone Machine", "rarity": "consumer" },
+      { "name": "P90 | Storm", "rarity": "consumer" },
+      { "name": "MAG-7 | Firestarter", "rarity": "industrial" },
+      { "name": "MP7 | Gunsmoke", "rarity": "industrial" },
+      { "name": "Glock-18 | Brass", "rarity": "milspec" },
+      { "name": "USP-S | Road Rash", "rarity": "milspec" },
+      { "name": "M4A1-S | Master Piece", "rarity": "restricted" },
+      { "name": "AWP | Pink DDPAT", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "cache-collection",
+    "name": "The Cache Collection",
+    "items": [
+      { "name": "MP9 | Setting Sun", "rarity": "consumer" },
+      { "name": "MAC-10 | Silver", "rarity": "consumer" },
+      { "name": "Tec-9 | Army Mesh", "rarity": "consumer" },
+      { "name": "FAMAS | Styx", "rarity": "consumer" },
+      { "name": "SG 553 | Aloha", "rarity": "industrial" },
+      { "name": "P250 | Valence", "rarity": "industrial" },
+      { "name": "Galil AR | Chatterbox", "rarity": "milspec" },
+      { "name": "AUG | Radiation Hazard", "rarity": "milspec" },
+      { "name": "Desert Eagle | Naga", "rarity": "restricted" },
+      { "name": "Five-SeveN | Fowl Play", "rarity": "restricted" }
+    ]
+  },
+  {
+    "id": "bank-collection",
+    "name": "The Bank Collection",
+    "items": [
+      { "name": "Negev | Army Sheen", "rarity": "consumer" },
+      { "name": "Sawed-Off | Sage Spray", "rarity": "consumer" },
+      { "name": "G3SG1 | Jungle Dashed", "rarity": "consumer" },
+      { "name": "MP7 | Gunsmoke", "rarity": "consumer" },
+      { "name": "MAC-10 | Silver", "rarity": "industrial" },
+      { "name": "Nova | Koi", "rarity": "industrial" },
+      { "name": "Desert Eagle | Meteorite", "rarity": "milspec" },
+      { "name": "Glock-18 | Death Rattle", "rarity": "milspec" }
+    ]
+  }
+]

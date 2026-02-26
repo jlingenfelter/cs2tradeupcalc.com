@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, RARITY_LABELS, getRaritiesInCollection, getTradeUpPairs, breadcrumbSchema } from '../lib/data';
+---
+<Base title="Best CS2 Collections for Trade Ups — Complete Collection Guide" description="Browse all CS2 collections available for trade ups. See which trade up tiers are possible for each collection and find the best trade up opportunities." canonical="/best-tradeup-collections/" currentNav="/best-tradeup-collections/">
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Collections</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Collections']])}</script>`} />
+
+<h1>Best CS2 Collections for Trade Ups</h1>
+<p>Not all collections are created equal when it comes to trade ups. The best collections for profitable trade ups have cheap input skins at one tier and high-value outcomes at the next tier. This page lists all available collections with their trade up possibilities to help you identify opportunities.</p>
+
+<h2>What Makes a Good Trade Up Collection?</h2>
+<p>A good trade up collection has three characteristics. First, it should have cheap skins at the input rarity tier so your total input cost is low. Second, it should have at least one high-value skin at the output rarity tier. Third, it should have few outcomes at the output tier so your probability of hitting the valuable skin is maximized.</p>
+<p>The ideal scenario is a collection with many cheap skins at one tier and a single, very expensive skin at the next tier. This creates a near-guaranteed profitable trade up when the output value significantly exceeds the total input cost.</p>
+
+<h2>All Collections</h2>
+<table>
+<thead><tr><th>Collection</th><th>Available Trade Ups</th><th>Skins</th></tr></thead>
+<tbody>
+{COLLECTIONS.map(c => {
+  const pairs = getTradeUpPairs(c);
+  return (
+    <tr>
+      <td><a href={`/collection/${c.id}/`}>{c.name}</a></td>
+      <td>{pairs.length > 0 ? pairs.map(p => <span style="display:inline-block;margin:2px 4px"><span class={`badge badge-${p.from}`}>{RARITY_LABELS[p.from]}</span> <span class="arrow">→</span> <span class={`badge badge-${p.to}`}>{RARITY_LABELS[p.to]}</span></span>) : 'None'}</td>
+      <td>{c.items.length}</td>
+    </tr>
+  );
+})}
+</tbody></table>
+
+<h2>Browse by Collection</h2>
+<div class="link-grid">
+{COLLECTIONS.map(c => <a href={`/collection/${c.id}/`}>{c.name}</a>)}
+</div>
+
+<h2>Trade Up Strategies by Tier</h2>
+<p>Different rarity tiers offer different trade up opportunities. Consumer to Industrial trade ups are the cheapest but typically produce the smallest profits. Mil-Spec to Restricted trade ups are the most popular because inputs are affordable and some Restricted skins can be quite valuable. Restricted to Classified and Classified to Covert trade ups have higher stakes — both the input costs and potential returns are significantly larger.</p>
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+<a href="/float-wear-guide/">Float Guide</a><a href="/tradeup-expected-value/">Expected Value</a>
+</div>
+</Base>

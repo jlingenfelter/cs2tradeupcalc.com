@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import { COLLECTIONS, RARITY_ORDER, RARITY_LABELS, RARITY_COLORS, getRaritiesInCollection, getTradeUpPairs, getItemsByRarity, faqSchema, breadcrumbSchema } from '../../lib/data';
+
+export function getStaticPaths() {
+  return COLLECTIONS.map(c => ({ params: { id: c.id }, props: { c } }));
+}
+
+const { c } = Astro.props;
+const rarities = getRaritiesInCollection(c);
+const pairs = getTradeUpPairs(c);
+const faqs: [string, string][] = [
+  [`What skins are in ${c.name}?`, `${c.name} contains ${c.items.length} skins across ${rarities.length} rarity tiers: ${rarities.map(r => RARITY_LABELS[r]).join(', ')}.`],
+  [`Can I trade up skins from ${c.name}?`, pairs.length > 0 ? `Yes. ${c.name} supports ${pairs.length} trade up tier${pairs.length > 1 ? 's' : ''}: ${pairs.map(p => `${RARITY_LABELS[p.from]} to ${RARITY_LABELS[p.to]}`).join(', ')}.` : `${c.name} does not support standard trade ups due to its rarity tier structure.`],
+  [`Is ${c.name} good for trade ups?`, `${c.name} has ${c.items.length} skins with ${pairs.length} possible trade up tiers. Check the items at each tier to evaluate whether the value gap between tiers makes trade ups worthwhile.`],
+];
+const otherCollections = COLLECTIONS.filter(x => x.id !== c.id).slice(0, 6);
+---
+<Base title={`${c.name} — CS2 Trade Up Skins, Odds & Calculator`} description={`Complete guide to ${c.name} for CS2 trade ups. ${c.items.length} skins across ${rarities.length} rarity tiers. See all items, trade up possibilities, and probability breakdowns.`} canonical={`/collection/${c.id}/`} extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><a href="/best-tradeup-collections/">Collections</a><span>›</span><span>{c.name}</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home', '/'], ['Collections', '/best-tradeup-collections/'], [c.name]])}</script>`} />
+
+<h1>{c.name}</h1>
+<p>{c.name} contains {c.items.length} skins across {rarities.length} rarity tiers. This page lists every skin in the collection organized by rarity, along with all possible trade up paths and their implications for trade up profitability.</p>
+
+<div class="stat-row">
+<div class="stat-card"><div class="num" style="color:var(--accent)">{c.items.length}</div><div class="desc">Total Skins</div></div>
+<div class="stat-card"><div class="num" style="color:var(--accent)">{rarities.length}</div><div class="desc">Rarity Tiers</div></div>
+<div class="stat-card"><div class="num" style="color:var(--accent2)">{pairs.length}</div><div class="desc">Trade Up Tiers</div></div>
+</div>
+
+<h2>Skins by Rarity</h2>
+{rarities.map(r => {
+  const items = getItemsByRarity(c, r);
+  return (
+    <>
+      <h3><span class={`badge badge-${r}`}>{RARITY_LABELS[r]}</span> — {items.length} skin{items.length !== 1 ? 's' : ''}</h3>
+      <table>
+        <thead><tr><th>Skin</th><th>Rarity</th></tr></thead>
+        <tbody>
+          {items.map(item => (
+            <tr><td>{item.name}</td><td><span class={`badge badge-${r}`}>{RARITY_LABELS[r]}</span></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+})}
+
+{pairs.length > 0 && (
+<>
+<h2>Trade Up Paths</h2>
+<p>{c.name} supports the following trade up paths:</p>
+<table>
+<thead><tr><th>Input Tier</th><th></th><th>Output Tier</th><th>Inputs Available</th><th>Outcomes</th></tr></thead>
+<tbody>
+{pairs.map(p => {
+  const inputs = getItemsByRarity(c, p.from);
+  const outputs = getItemsByRarity(c, p.to);
+  return (
+    <tr>
+      <td><span class={`badge badge-${p.from}`}>{RARITY_LABELS[p.from]}</span></td>
+      <td class="arrow">→</td>
+      <td><span class={`badge badge-${p.to}`}>{RARITY_LABELS[p.to]}</span></td>
+      <td>{inputs.length} skin{inputs.length !== 1 ? 's' : ''}</td>
+      <td>{outputs.length} skin{outputs.length !== 1 ? 's' : ''}</td>
+    </tr>
+  );
+})}
+</tbody></table>
+
+<h2>Trade Up Analysis</h2>
+{pairs.map(p => {
+  const inputs = getItemsByRarity(c, p.from);
+  const outputs = getItemsByRarity(c, p.to);
+  const probEach = outputs.length > 0 ? (100 / outputs.length).toFixed(1) : '0';
+  return (
+    <>
+      <h3>{RARITY_LABELS[p.from]} → {RARITY_LABELS[p.to]}</h3>
+      <p>Using 10 {RARITY_LABELS[p.from]} skins from {c.name}, you receive one of {outputs.length} {RARITY_LABELS[p.to]} skin{outputs.length !== 1 ? 's' : ''}. If all 10 inputs come from this collection exclusively, each outcome has a {probEach}% probability.</p>
+      <p><strong>Possible inputs:</strong> {inputs.map(i => i.name).join(', ')}</p>
+      <p><strong>Possible outcomes:</strong> {outputs.map(i => i.name).join(', ')}</p>
+    </>
+  );
+})}
+</>
+)}
+
+<h2>Use the Calculator</h2>
+<p>Plan a trade up using {c.name} with our <a href="/tradeup-calculator/">trade up calculator</a>. Select this collection for your input skins and see all possible outcomes with probabilities and expected value.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<h2>Other Collections</h2>
+<div class="link-grid">
+{otherCollections.map(x => <a href={`/collection/${x.id}/`}>{x.name}</a>)}
+</div>
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+<a href="/float-wear-guide/">Float Guide</a><a href="/tradeup-expected-value/">Expected Value</a>
+</div>
+</Base>

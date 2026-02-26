@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, breadcrumbSchema } from '../lib/data';
+---
+<Base title="CS2 Trade Up Calculator — Calculate Outcomes & Probability" description="Free CS2 trade up calculator. Add 10 input skins, see all possible outcomes with probabilities, expected value, and profit/loss." canonical="/tradeup-calculator/" currentNav="/tradeup-calculator/" includeCalcJS={true}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Calculator</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Calculator']])}</script>`} />
+
+<h1>CS2 Trade Up Calculator</h1>
+<p>Add your 10 input skins below. All inputs must share the same rarity tier. The calculator will determine every possible outcome, compute probabilities based on collection weighting, and calculate expected value when you enter output prices.</p>
+
+<div class="calc-box" id="tradeup-calc">
+  <noscript><p style="color:var(--red)">JavaScript is required for the calculator to function.</p></noscript>
+</div>
+
+<h2>How to Use This Calculator</h2>
+<p>Select an input rarity tier from the dropdown at the top. This locks all 10 input rows to that rarity — for example, selecting Mil-Spec means all inputs must be Mil-Spec skins and your output will be Restricted tier. For each of the 10 rows, choose a collection from the dropdown and enter the price you paid for that skin. The skin name and float fields are optional and for your own reference.</p>
+<p>After clicking Calculate, you will see all possible outcome skins with their probabilities. The probability model works as follows: each input contributes 10% weight to its collection. If you have 6 inputs from Collection A and 4 from Collection B, outcomes from Collection A collectively receive 60% probability (split evenly among A's outcomes) and Collection B receives 40% (split evenly). Enter output prices to see expected value and ROI.</p>
+
+<h2>Understanding the Results</h2>
+<p>The outcomes table shows every possible skin you could receive, which collection it comes from, its probability percentage, and space to enter the current market price. When you enter output prices, the calculator computes the EV contribution of each outcome (probability × price) and sums them for total expected value. Profit or loss equals EV minus your total input cost, and ROI shows the percentage return on your investment.</p>
+<p>A positive profit means the trade up has positive expected value on average. However, remember that each individual trade up produces only one outcome — you either get a valuable skin or a less valuable one. EV is a long-run average, not a guarantee for any single attempt.</p>
+
+<h2>Tips for Profitable Trade Ups</h2>
+<p>The most reliable strategy is to find collections where the next rarity tier contains at least one very high-value skin. By combining inputs from that collection with a second collection that has cheap inputs at the same rarity, you can create trade ups where the probability of hitting the valuable outcome is high enough to make the EV positive.</p>
+<p>Float value also matters in practice. The output float is calculated as: Output Float = (Average Input Float) × (Max Float - Min Float) + Min Float. This means lower float inputs generally produce lower float outputs, which can significantly affect the value of the result. See our <a href="/float-wear-guide/">float and wear guide</a> for details.</p>
+<p>Always check current market prices before committing. Skin values fluctuate constantly, and a trade up that was profitable yesterday may not be profitable today.</p>
+
+<h2>Simplified Probability Model</h2>
+<p>This calculator uses a simplified probability model where collection weighting is proportional to input count. The actual CS2 trade up system may have minor variations in how outcomes are weighted, but this model provides a close approximation for planning purposes. For most trade ups, the difference between the simplified model and actual results is negligible over a large number of attempts.</p>
+
+<h2>Browse Collections</h2>
+<div class="link-grid">
+{COLLECTIONS.map(c => <a href={`/collection/${c.id}/`}>{c.name}</a>)}
+</div>
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/how-tradeups-work/">How Trade Ups Work</a><a href="/float-wear-guide/">Float Guide</a>
+<a href="/tradeup-expected-value/">Expected Value</a><a href="/tradeup-roi/">ROI Guide</a>
+</div>
+</Base>

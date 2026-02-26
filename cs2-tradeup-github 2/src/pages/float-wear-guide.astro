@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, faqSchema, breadcrumbSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is float value in CS2?','Float value is a decimal number between 0.0000 and 1.0000 that determines the visual wear condition of a skin. Lower float means better condition.'],
+  ['How does float affect trade up output?','The output float is calculated from the average of your 10 input floats, mapped to the output skin\'s float range. Lower average inputs produce lower float outputs.'],
+  ['What are the wear condition ranges?','Factory New: 0.00-0.07, Minimal Wear: 0.07-0.15, Field-Tested: 0.15-0.38, Well-Worn: 0.38-0.45, Battle-Scarred: 0.45-1.00.'],
+  ['Can I get Factory New from a trade up?','Yes, if the output skin supports Factory New and your average input float is low enough to produce a float below 0.07 after mapping.'],
+];
+---
+<Base title="CS2 Float Value & Wear Guide — Trade Up Float Calculator" description="Understand CS2 float values and wear conditions. Learn how float affects trade up outputs and how to calculate output float from inputs." canonical="/float-wear-guide/" currentNav="/float-wear-guide/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Float & Wear Guide</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Float & Wear Guide']])}</script>`} />
+
+<h1>CS2 Float Value & Wear Condition Guide</h1>
+<p>Float value is a critical concept for trade ups. It determines the visual condition of every skin in CS2 and directly affects trade up outputs. Understanding float mechanics lets you produce higher-value results from your trade up contracts.</p>
+
+<h2>What Is Float Value?</h2>
+<p>Every skin in CS2 has a float value — a decimal number that represents its wear condition. Float values range from 0.000000000 to 1.000000000, though most skins have a restricted range. The float value directly determines how scratched, worn, or pristine the skin appears in-game. Lower float values mean less wear and generally higher market value.</p>
+
+<h2>Wear Condition Ranges</h2>
+<table>
+<thead><tr><th>Condition</th><th>Abbreviation</th><th>Float Range</th></tr></thead>
+<tbody>
+<tr><td>Factory New</td><td>FN</td><td>0.00 – 0.07</td></tr>
+<tr><td>Minimal Wear</td><td>MW</td><td>0.07 – 0.15</td></tr>
+<tr><td>Field-Tested</td><td>FT</td><td>0.15 – 0.38</td></tr>
+<tr><td>Well-Worn</td><td>WW</td><td>0.38 – 0.45</td></tr>
+<tr><td>Battle-Scarred</td><td>BS</td><td>0.45 – 1.00</td></tr>
+</tbody></table>
+<p>These ranges are absolute — any skin with a float of 0.06 is Factory New, and any skin with 0.08 is Minimal Wear, regardless of the specific skin type. However, not all skins can exist in every condition. Many skins have restricted float ranges, meaning they can only drop in certain conditions.</p>
+
+<h2>Float in Trade Ups</h2>
+<p>The output float of a trade up is calculated using this formula:</p>
+<p><strong>Output Float = (Average Input Float) × (Max Float – Min Float) + Min Float</strong></p>
+<p>Where Average Input Float is the average of all 10 input skin float values, and Max/Min Float are the output skin's float boundaries. This means that if you use 10 low-float inputs, you will get a lower-float output, which typically commands a higher price.</p>
+
+<h2>Float Range Examples</h2>
+<p>Most skins have a float range of 0.00 to 1.00, meaning they can exist in any condition. Some notable exceptions include skins that only exist in Factory New (range 0.00 to 0.08) or skins that cannot be Factory New (range 0.06 to 0.80). When trading up, the output skin's specific float range is what determines the final float.</p>
+<p>For example, if the output skin has a range of 0.00 to 0.60 and your average input float is 0.10, the output float would be: 0.10 × (0.60 – 0.00) + 0.00 = 0.06, which is Factory New. The same average input float with a skin that has range 0.00 to 1.00 would give: 0.10 × (1.00 – 0.00) + 0.00 = 0.10, which is Minimal Wear.</p>
+
+<h2>Maximizing Float Value in Trade Ups</h2>
+<p>To maximize the value of your trade up output, use the lowest float inputs you can afford. Factory New inputs with very low floats (0.00x) produce the best results. However, low-float inputs typically cost more than high-float ones, so there is a trade-off between input cost and output quality.</p>
+<p>The optimal strategy depends on how much the output skin's value changes across conditions. If the Factory New version of the target skin is worth 10 times more than Field-Tested, investing in low-float inputs may be worthwhile even at a premium. If the price difference between conditions is small, high-float inputs may produce better ROI.</p>
+
+<h2>Float Cap Trade Ups</h2>
+<p>Float cap trade ups are an advanced strategy where you intentionally select inputs with specific float values to ensure the output falls within a desired condition. For example, to guarantee a Factory New output on a skin with range 0.00 to 1.00, you need an average input float below 0.07. This technique is particularly powerful for skins where Factory New commands a significant premium.</p>
+
+<h2>Tools and Resources</h2>
+<p>Use our <a href="/tradeup-calculator/">trade up calculator</a> to plan your trade ups with float considerations. The float input field lets you enter exact float values for each input skin to see how they affect your trade up.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+<a href="/tradeup-probability/">Probability Guide</a><a href="/tradeup-expected-value/">Expected Value</a>
+{COLLECTIONS.slice(4,9).map(c => <a href={`/collection/${c.id}/`}>{c.name}</a>)}
+</div>
+</Base>

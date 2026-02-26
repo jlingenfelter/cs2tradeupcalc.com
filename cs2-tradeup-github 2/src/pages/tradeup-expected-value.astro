@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import { COLLECTIONS, faqSchema, breadcrumbSchema } from '../lib/data';
+const faqs: [string,string][] = [
+  ['What is trade up expected value?','Expected value (EV) is the average return from a trade up if repeated many times. It equals the sum of each outcome\'s probability multiplied by its market value.'],
+  ['How do I calculate trade up EV?','Add up (probability × market price) for every possible outcome. If the total exceeds your input cost, the trade up has positive EV.'],
+  ['Can trade ups have positive EV?','Yes. Carefully selected trade ups where cheap inputs can produce high-value outcomes often have positive expected value, especially in collections with few outcomes at the target tier.'],
+];
+---
+<Base title="CS2 Trade Up Expected Value — EV Calculator & Guide" description="Calculate expected value for CS2 trade ups. Learn how to identify positive-EV trade ups and maximize your average returns." canonical="/tradeup-expected-value/" extraHead={`<script type="application/ld+json">${faqSchema(faqs)}</script>`}>
+
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span>Expected Value</span></div>
+<Fragment set:html={`<script type="application/ld+json">${breadcrumbSchema([['Home','/'],['Expected Value']])}</script>`} />
+
+<h1>CS2 Trade Up Expected Value Guide</h1>
+<p>Expected value is the single most important metric for evaluating trade ups. A trade up with positive EV is profitable on average over many repetitions, while negative EV means you lose money on average. This guide explains how to calculate EV and find profitable opportunities.</p>
+
+<h2>How to Calculate Trade Up EV</h2>
+<p>Trade up EV is straightforward to calculate. For each possible outcome, multiply its probability by its current market price. Sum all these values to get the total expected return. Then compare the expected return to your total input cost (the combined price of all 10 input skins).</p>
+<p>The formula is: <strong>EV = Σ (Probability × Output Price)</strong> for all possible outcomes. If EV is greater than Total Input Cost, the trade up has positive expected value. If EV is less than Total Input Cost, it has negative expected value.</p>
+
+<h2>EV Calculation Example</h2>
+<p>Suppose you have a Mil-Spec to Restricted trade up with 3 possible outcomes. Outcome A has 50% probability and costs $5.00. Outcome B has 30% probability and costs $3.00. Outcome C has 20% probability and costs $25.00.</p>
+<p>EV = (0.50 × $5.00) + (0.30 × $3.00) + (0.20 × $25.00) = $2.50 + $0.90 + $5.00 = <strong>$8.40</strong></p>
+<p>If your 10 input skins cost a total of $6.00, the expected profit is $8.40 - $6.00 = $2.40 per trade up, making this a profitable trade up with a 40% ROI.</p>
+
+<h2>Finding Positive-EV Trade Ups</h2>
+<p>The key to positive-EV trade ups is finding collections where the value gap between tiers is large and the number of outcomes at the target tier is small. Look for collections where at least one outcome at the next tier is worth significantly more than 10× the average input cost.</p>
+<p>Collections with only 1-2 outcomes at the target tier are ideal because your probability is concentrated rather than spread across many possibilities. A single high-value outcome with 50%+ probability can easily create positive EV even if the other outcomes are worth very little.</p>
+
+<h2>The Role of Market Prices</h2>
+<p>Trade up EV changes constantly because skin prices fluctuate on the Steam Market. A trade up that was profitable last week might be negative this week if input prices rose or output prices fell. Always check current prices before committing to a trade up.</p>
+<p>Steam Market fees also affect real-world profitability. When selling outputs on the Steam Market, Valve takes a 15% cut (13% Steam fee + 2% CS2 fee). This means your actual return is 85% of the listed price. Factor this into your EV calculations for a more accurate picture.</p>
+
+<h2>EV vs. Single-Trade Outcomes</h2>
+<p>EV is a long-run average, not a prediction for any single trade up. A trade up with $8.40 EV and $6.00 cost is profitable on average, but any individual attempt will produce exactly one outcome — you might get the $25 skin or the $3 skin. Over many repetitions, your average return converges toward the EV, but individual results will vary widely.</p>
+<p>This means you should only pursue positive-EV trade ups that you could afford to repeat multiple times. If you can only afford one attempt, the variance means you might lose money even with positive EV.</p>
+
+<h2>Calculate Your Trade Up EV</h2>
+<p>Use our <a href="/tradeup-calculator/">trade up calculator</a> to compute exact EV for any combination of inputs. Enter your 10 skins and output prices to see the expected value, profit, and ROI instantly.</p>
+
+<h2>Frequently Asked Questions</h2>
+{faqs.map(f => <div class="faq-item"><h3>{f[0]}</h3><p>{f[1]}</p></div>)}
+
+<div class="link-grid" style="margin-top:32px">
+<a href="/">Home</a><a href="/tradeup-calculator/">Calculator</a><a href="/how-tradeups-work/">How Trade Ups Work</a>
+<a href="/tradeup-probability/">Probability</a><a href="/tradeup-roi/">ROI Guide</a><a href="/tradeup-breakeven/">Breakeven</a>
+</div>
+</Base>
